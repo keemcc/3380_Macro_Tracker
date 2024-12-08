@@ -20,19 +20,19 @@ Input: User_id, Date. Input the user ID and date to check.
 
 Steps: 
 
-    Check LOG table for every row with U_id equal to passed User_id and Date equal to passed date. 
+Check LOG table for every row with U_id equal to passed User_id and Date equal to passed date. 
 
-    For each instance of both conditions being met enter the SERVING table and search for S_name equal to S_name of LOG row. 
+For each instance of both conditions being met enter the SERVING table and search for S_name equal to S_name of LOG row. 
 
-    Using F_id and S_grams from SERVING row, find row in FOOD with same F_id. 
+Using F_id and S_grams from SERVING row, find row in FOOD with same F_id. 
 
-    User S_grams divided by Default_grams to find serving size, in FOOD row, then calculate number of calories in the serving by multiplying by the serving size. 
+User S_grams divided by Default_grams to find serving size, in FOOD row, then calculate number of calories in the serving by multiplying by the serving size. 
 
-    Add number of calories to total. 
+Add number of calories to total. 
 
-    Repeat for all rows in LOG with U_id equal to User_id and Date equal to Date. 
+Repeat for all rows in LOG with U_id equal to User_id and Date equal to Date. 
 
-    Return the total Calories. 
+Return the total Calories. 
 
   
 
