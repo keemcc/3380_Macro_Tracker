@@ -1,7 +1,7 @@
 from datetime import datetime
 from helperFunctions import userIDExists, dateExistsinUserLog
 
-def caloriesOnDate(cursor):
+def foodsOnDate(cursor):
     userID = input("Enter a user ID: ")
     while (True):
         if userIDExists(cursor, userID):
@@ -32,12 +32,12 @@ def caloriesOnDate(cursor):
     cursor.execute(logQuery, (userID, date))
     logRows = cursor.fetchall()
 
-    totalCalories = 0
+    foodNamesSet = set()
     for row in logRows:
         servingName = row[0]
 
         servingQuery = """
-        SELECT S_grams, F_id
+        SELECT F_id
         FROM SERVING
         WHERE S_name = %s;
         """
@@ -49,11 +49,10 @@ def caloriesOnDate(cursor):
             print(f"Error, {servingName} was not found.")
             return
         
-        servingGrams = servingRow[0]
-        foodID = servingRow[1]
+        foodID = servingRow[0]
 
         foodQuery = """
-        SELECT Default_grams, Calories
+        SELECT F_name
         FROM FOOD
         WHERE F_id = %s
         """
@@ -65,13 +64,17 @@ def caloriesOnDate(cursor):
             print(f"Error, food with ID = {foodID} was not found.")
             return
         
-        defaultGrams = int(foodRow[0])
-        calories = int(foodRow[1])
-
-        caloriesPerGram = calories/defaultGrams
-        caloriesInServing = int(servingGrams) * caloriesPerGram
-
-        totalCalories+= caloriesInServing
+        foodNamesSet.add(foodRow[0])
     
+    foodNames = list(foodNamesSet)
     print("")
-    print(f"{userID}'s calories logged on {date.date()} were {totalCalories} Calories.")
+    if (len(foodNames) == 0):
+        print(f"User {userID} did not track any foods on {date.date()}", end="")
+    elif (len(foodNames) == 1):
+        print(f"User {userID} tracked {foodNames[0]} on {date.date()}", end="")
+    else:
+        print(f"User {userID}'s foods tracked on {date.date()} were")
+        for foodName in foodNames[:-1]:
+            print(f"{foodName}, ", end="")
+        print(f"and {foodNames[-1]}", end="")
+    print(".")

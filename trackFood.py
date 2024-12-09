@@ -39,3 +39,5 @@ def trackFood(cursor):
     """
 
     cursor.execute(insertQuery, (userID, log, date, servingName))
+
+    print(f"\nSuccessfully logged {servingName} into User {userID}'s log number {log} for {date.date()}")
