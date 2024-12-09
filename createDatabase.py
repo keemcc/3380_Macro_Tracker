@@ -104,7 +104,8 @@ def insertData(cursor):
     INSERT INTO LOG (U_id, Log_num, Log_date, S_name) 
     VALUES 
         (1, 1, '2024-12-01', 'Small Bowl of Oatmeal'),
-        (1, 2, '2024-12-02', 'Single Piece of Chicken Breast'),
+        (1, 2, '2024-12-01', 'Single Piece of Chicken Breast'),
+        (1, 3, '2024-12-01', 'Half Avocado'),
         (2, 1, '2024-12-03', 'Half Avocado'),
         (3, 1, '2024-12-04', 'Medium Bowl of Oatmeal');
     """)

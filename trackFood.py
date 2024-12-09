@@ -1,4 +1,5 @@
 from datetime import datetime
+from helperFunctions import *
 
 def trackFood(cursor):
     userID = input("Enter a user ID: ")
@@ -38,54 +39,3 @@ def trackFood(cursor):
     """
 
     cursor.execute(insertQuery, (userID, log, date, servingName))
-
-def userIDExists(cursor, userID):
-    try:
-        userID = int(userID)
-    except:
-        return False
-
-    query = """
-    SELECT *
-    FROM USER_T
-    WHERE User_id = %s
-    """
-
-    cursor.execute(query, (userID,))
-    result = cursor.fetchone()
-
-    if result is None:
-        return False
-    else:
-        return True
-
-def servingNameExists(cursor, servingName):
-    query = """
-    SELECT *
-    FROM SERVING
-    WHERE S_name = %s
-    """
-    
-    cursor.execute(query, (servingName,))
-    result = cursor.fetchone()
-
-    if result is None:
-        return False
-    else:
-        return True
-
-def findLogNumber(cursor, userID):
-    query = """
-    SELECT MAX(Log_num) AS maxLogNum
-    FROM LOG
-    WHERE U_id = %s;
-    """
-
-    cursor.execute(query, (userID,))
-    result = cursor.fetchone()
-
-    if result and result[0] is not None:
-        log = int(result[0]) + 1
-    else:
-        log = 1
-    return log
