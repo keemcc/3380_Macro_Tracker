@@ -16,6 +16,7 @@ def trackFood(cursor):
         if (userInput == "-1"):
             return
         try:
+            #format date
             date = datetime.strptime(userInput, "%Y-%m-%d")
             break
         except:

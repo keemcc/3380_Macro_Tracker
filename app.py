@@ -5,6 +5,7 @@ from trackFood import trackFood
 from caloriesOnDate import caloriesOnDate
 from foodsOnDate import foodsOnDate
 
+#connect to the database server
 cnx = connector.connect(user='root', host='127.0.0.1', password='5673')
 cursor = cnx.cursor()
 

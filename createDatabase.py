@@ -1,4 +1,5 @@
 def createDB(cursor):
+    #Drop if a previous creation is made.
     try:
         cursor.execute("DROP SCHEMA MACRO_TRACKER;")
     except:
@@ -69,13 +70,16 @@ def createDB(cursor):
     );
     """)
 
+#Insert filler data
 def insertData(cursor):
     cursor.execute("""
     INSERT INTO USER_T (User_id, Weight, Birth_date) 
     VALUES 
-        (1, 70, '1990-05-14'),
-        (2, 85, '1985-03-22'),
-        (3, 62, '2000-11-05');
+        (1, 150, '1990-05-14'),
+        (2, 200, '1985-03-22'),
+        (3, 165, '2000-11-05'),
+        (4, 182, '2005-02-03'),
+        (5, 205, '2005-03-02');
     """)
     cursor.execute("""
     INSERT INTO BRAND (B_id, B_name) 
@@ -98,21 +102,31 @@ def insertData(cursor):
         ('Medium Bowl of Oatmeal', 100, 1),
         ('Large Bowl of Oatmeal', 150, 1),
         ('Single Piece of Chicken Breast', 100, 2),
-        ('Half Avocado', 50, 3);
+        ('Half Avocado', 50, 3),
+        ('Avocado', 100, 3);
     """)
     cursor.execute("""
     INSERT INTO LOG (U_id, Log_num, Log_date, S_name) 
     VALUES 
         (1, 1, '2024-12-01', 'Small Bowl of Oatmeal'),
         (1, 2, '2024-12-01', 'Single Piece of Chicken Breast'),
-        (1, 3, '2024-12-01', 'Half Avocado'),
+        (1, 3, '2024-12-01', 'Avocado'),
+        (1, 4, '2024-12-02', 'Small Bowl of Oatmeal'),
         (2, 1, '2024-12-03', 'Half Avocado'),
-        (3, 1, '2024-12-04', 'Medium Bowl of Oatmeal');
+        (3, 1, '2024-12-04', 'Medium Bowl of Oatmeal'),
+        (4, 1, '2024-12-01', 'Avocado'),
+        (5, 1, '2024-12-01', 'Single Piece of Chicken Breast'),
+        (5, 2, '2024-12-01', 'Single Piece of Chicken Breast'),
+        (5, 3, '2024-12-01', 'Single Piece of Chicken Breast'),
+        (5, 4, '2024-12-01', 'Single Piece of Chicken Breast'),
+        (5, 5, '2024-12-01', 'Single Piece of Chicken Breast');
     """)
     cursor.execute("""
     INSERT INTO FITNESS_GOAL (Fitness_goal, User_id) 
     VALUES 
         ('Weight Loss', 1),
         ('Muscle Gain', 2),
-        ('Maintain Weight', 3);
+        ('Maintain Weight', 3),
+        ('Muscle Gain', 4),
+        ('Muscle Gain', 5);
     """)

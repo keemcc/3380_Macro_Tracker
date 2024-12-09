@@ -33,6 +33,7 @@ def foodsOnDate(cursor):
     logRows = cursor.fetchall()
 
     foodNamesSet = set()
+    #for each row satisfying the conditions, find the food in that row
     for row in logRows:
         servingName = row[0]
 
@@ -64,8 +65,10 @@ def foodsOnDate(cursor):
             print(f"Error, food with ID = {foodID} was not found.")
             return
         
+        #add the found food into the food name set
         foodNamesSet.add(foodRow[0])
     
+    #print all food names that were found
     foodNames = list(foodNamesSet)
     print("")
     if (len(foodNames) == 0):

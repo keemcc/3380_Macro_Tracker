@@ -1,3 +1,4 @@
+#finds if the userID exists by seeing if it returns anything when selecting
 def userIDExists(cursor, userID):
     try:
         userID = int(userID)
@@ -18,6 +19,7 @@ def userIDExists(cursor, userID):
     else:
         return True
 
+#finds if serving name exists in a similar way to the userID
 def servingNameExists(cursor, servingName):
     query = """
     SELECT *
@@ -33,6 +35,7 @@ def servingNameExists(cursor, servingName):
     else:
         return True
 
+#finds if date exists in a similar way to servingNameExists and userIDExists
 def dateExistsinUserLog(cursor, userID, date):
     query = """
     SELECT *
@@ -48,6 +51,7 @@ def dateExistsinUserLog(cursor, userID, date):
     else:
         return True
 
+#finds the next log number for a user
 def findLogNumber(cursor, userID):
     query = """
     SELECT MAX(Log_num) AS maxLogNum

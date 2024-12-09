@@ -1,5 +1,6 @@
 from prettytable import PrettyTable
 
+#uses prettytable to visualize the data input into the database by iterating through all data
 def visualizeData(cursor):
     tables = ['USER_T', 'BRAND', 'FOOD', 'SERVING', 'LOG', 'FITNESS_GOAL']
     
@@ -19,6 +20,7 @@ def visualizeData(cursor):
         
         print(table)
 
+#uses prettytable to visualize the structure of the database by iterating through the tables
 def visualizeStructure(cursor):
     cursor.execute("SHOW TABLES;")
     tables = [table[0] for table in cursor.fetchall()]
