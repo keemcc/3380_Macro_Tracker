@@ -6,11 +6,12 @@ from caloriesOnDate import caloriesOnDate
 from foodsOnDate import foodsOnDate
 
 #connect to the database server
-cnx = connector.connect(user='root', host='127.0.0.1', password='5673')
+cnx = connector.connect(user='root', host='localhost', password='5673')
 cursor = cnx.cursor()
 
 createDB(cursor)
 insertData(cursor)
+cnx.commit()
 
 print("\nWelcome to the Macro Tracker!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 while True:
@@ -25,6 +26,7 @@ while True:
     userInput = input("Enter the number of your choice: ")
     if (userInput == ("1" or "1.")):
         trackFood(cursor)
+        cnx.commit()
     elif (userInput == ("2" or "2.")):
         foodsOnDate(cursor)
     elif (userInput == ("3" or "3.")):
