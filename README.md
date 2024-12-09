@@ -1,11 +1,11 @@
-#CS3380 Macro Tracker
+# CS3380 Macro Tracker
 This is a project created with Python and MySQL that demonstrates a macro tracker with various functions using SQL queries.
 
-##Requirements
+## Requirements
 - Python
 - MySQL Server running
 
-##Instructions
+## Instructions
 1. Install mysql-connector-python by running:
 ```bash
 pip install mysql-connector-python
